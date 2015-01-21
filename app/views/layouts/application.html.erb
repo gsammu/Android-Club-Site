@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Asc</title>
+  <title><%= @title || "MMU Android Club | Learn to make apps together" %></title>
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= javascript_include_tag 'application' %>
-  <%= html_import_tag        'application'%>
+  <%= html_import_tag        'application' %>
+  <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,700italic,400italic' rel='stylesheet' type='text/css'>
   <%= csrf_meta_tags %>
 </head>
 <body>

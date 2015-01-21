@@ -13,3 +13,18 @@
  *= require_tree .
  *= require_self
  */
+
+body
+{
+	font-family: 'Roboto', sans-serif;
+}
+
+.add-some-margin-top
+{
+	margin-top: 20px;
+}
+
+ul, ol > li
+{
+	font-size: 18px;
+}

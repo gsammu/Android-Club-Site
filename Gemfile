@@ -28,6 +28,7 @@ gem 'haml-rails'
 gem 'high_voltage', '~> 2.2.1' #To render static pages
 gem 'polymer-rails'
 gem 'polymer-paper-rails'
+gem 'markdown'
 
 # Models
 gem 'paranoia', '~> 2.0'
