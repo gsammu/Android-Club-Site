@@ -85,6 +85,10 @@ GEM
     debug_inspector (0.0.2)
     diff-lcs (1.2.5)
     dotenv (1.0.2)
+    emcee (1.0.10)
+      nokogiri (~> 1.0)
+      nokogumbo (~> 1.1)
+      rails (~> 4.0)
     erubis (2.7.0)
     eventmachine (1.0.4)
     excon (0.43.0)
@@ -192,12 +196,6 @@ GEM
       rack
       rake (>= 0.8.1)
     pg (0.17.1)
-    polymer-paper-rails (0.2.5)
-      polymer-rails (~> 0.2.5)
-    polymer-rails (0.2.5)
-      nokogiri (~> 1.6)
-      nokogumbo (~> 1.1)
-      rails (>= 3.1.0)
     props (1.1.2)
     pry (0.10.1)
       coderay (~> 1.1.0)
@@ -348,6 +346,7 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   daemons
   dotenv (~> 1.0)
+  emcee
   factory_girl_rails
   fog (~> 1.21.0)
   foreman
@@ -364,8 +363,6 @@ DEPENDENCIES
   paranoia (~> 2.0)
   passenger
   pg (~> 0.17.1)
-  polymer-paper-rails
-  polymer-rails
   pry-rails
   pry-remote
   rails (~> 4.2)

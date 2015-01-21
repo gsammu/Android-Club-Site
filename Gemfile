@@ -26,8 +26,9 @@ gem 'bcrypt-ruby', '~> 3.1.5'
 gem 'haml'
 gem 'haml-rails'
 gem 'high_voltage', '~> 2.2.1' #To render static pages
-gem 'polymer-rails'
-gem 'polymer-paper-rails'
+# gem 'polymer-rails'
+gem 'emcee'
+# gem 'polymer-paper-rails'
 gem 'markdown'
 
 # Models
