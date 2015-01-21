@@ -20,14 +20,14 @@ gem 'uglifier', '~> 2.1.1'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails', '~> 2.2.1'
 gem 'bcrypt-ruby', '~> 3.1.5'
-gem 'angularjs-rails', '~> 1.3.0'
-gem 'angular_rails_csrf'
-gem 'asset_sync'
+# gem 'angularjs-rails', '~> 1.3.0'
+# gem 'angular_rails_csrf'
+# gem 'asset_sync'
 gem 'haml'
 gem 'haml-rails'
-gem 'slim-rails'
 gem 'high_voltage', '~> 2.2.1' #To render static pages
 gem 'polymer-rails'
+gem 'polymer-paper-rails'
 
 # Models
 gem 'paranoia', '~> 2.0'
