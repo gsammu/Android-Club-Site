@@ -1,6 +1,8 @@
-.jumbotron.text-center
-  %paper-button.login-button.col-xs-1.col-xs-offset-11.hidden
-    Coming Soon
+.jumbotron.top-jumbo.text-center
+  %paper-button.join-button.col-xs-1.col-xs-offset-10.hidden{:raised => true}
+    JOIN
+  %paper-button.login-button.col-xs-1.hidden
+    LOGIN
   .container-fluid
     %h1
       MMU Android Student Club
@@ -8,7 +10,10 @@
 
 .container-fluid.text-center
   %h2.text-uppercase
-    Coming Soon. Next Trimester.
+    Next Trimester.
+    =link_to "#joinus_box" do
+      %paper-button.interested-button
+        Join Us.
 
 .container-fluid
   
@@ -63,44 +68,49 @@
           %li How to use Git and Github
           %li Make a Hello World program together
   
-  .row
-    .col-lg-8.col-lg-offset-2
-  
-      %paper-shadow.container-fluid.main-section{:z => 3}
-        %h2.text-center
-          Join Us
-      
-        .vertical-gap
-      
-        / =image_tag "andy_skateboarding.jpg", {:class => "center-block"}
-      
-        %p
-          It's <b>free</b> to join Android Student Club. However, members are expected to:
-      
-        %ul
-          %li To commit and willing to invest time and effort into learning Android development at unprecedented pace
-          %li To help foster a positive and safe environment for people to learn together
-          %li To be helpful to other club members as well as non-members
-          %li To be friendly towards beginners, people of other races and gender
-          %li
-            <i>and other social rules as mentioned in
-            =link_to "Hacker School User Manual", "https://www.hackerschool.com/manual#sec-environment"
-            </i>
-      
-        %p
-          Of course, we would love you to know:
-      
-        %ul
-          %li Java, or is sufficiently-good with similar OOP languages such as C++
-          %li Googling effectively, because most of the time you will have to solve problems by Googling the solution
-  
-        %paper-button.center-block
-          Sign Up Form Coming Soon
-  
-        %p
-          For now, join us on
-          =link_to "Google Students at MMU Facebook Group.", "https://www.facebook.com/groups/googlemmu/"
-          If got any questions, ask in the group.
+.jumbotron.join-jumbo
+  .container-fluid
+    .row
+      .col-lg-8.col-lg-offset-2
+    
+        %paper-shadow.container-fluid.join-box{:z => 5}
+          %h2.text-center
+            Join Us
+            %a{:name => :joinus_box}
+        
+          .vertical-gap
+        
+          / =image_tag "andy_skateboarding.jpg", {:class => "center-block"}
+        
+          %p
+            It's <b>free</b> to join Android Student Club. However, members are expected to:
+        
+          %ul
+            %li To commit and willing to invest time and effort into learning Android development at unprecedented pace
+            %li To help foster a positive and safe environment for people to learn together
+            %li To be helpful to other club members as well as non-members
+            %li To be friendly towards beginners, people of other races and gender
+            %li
+              <i>and other social rules as mentioned in
+              =link_to "Hacker School User Manual", "https://www.hackerschool.com/manual#sec-environment"
+              </i>
+        
+          %p
+            Of course, we would love you to know:
+        
+          %ul
+            %li Java, or is sufficiently-good with similar OOP languages such as C++
+            %li Googling effectively, because most of the time you will have to solve problems by Googling the solution
+
+          .vertical-gap
+    
+          .row
+            .col-xs-8.col-xs-offset-2
+              = link_to "http://goo.gl/forms/dKLpwTA6i8", {:target => "_blank"} do
+                %paper-button.center-block.signup-form-button{:raised => true}
+                  SIGN UP NOW
+
+          .vertical-gap
 
 %footer.text-center.container
   
