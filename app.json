@@ -1,0 +1,20 @@
+{
+  "name": "MMU Android Student Club",
+  "description": "Rails app with Polymer and Paper",
+  "repository": "https://github.com/gsammu/Android-Club-Site",
+  "addons": [ 
+    "deployhooks:http",
+    "heroku-postgresql:hobby-dev",
+    "newrelic:stark",
+    "papertrail:choklad",
+    "pgbackups:auto-month",
+    "sendgrid:starter"
+  ],
+  "env": {
+    "RAILS_ENV": "production",
+    "TZ": "Asia/Kuala_Lumpur"
+  },
+  "scripts": {
+    "postdeploy": "bundle exec rake db:migrate"
+  }
+}
