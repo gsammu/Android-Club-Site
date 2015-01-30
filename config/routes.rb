@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'comingsoon#home'
+  root 'home#home'
 
   # login
 
