@@ -1,6 +1,7 @@
+=render "loginform"
+
 .jumbotron.top-jumbo.text-center
-  paper-button.join-button.col-xs-1.col-xs-offset-10.hidden raised=true JOIN
-  paper-button.login-button.col-xs-1.hidden LOGIN
+
   .container-fluid
     h1 MMU Android Student Club
     h4 Learn Android Development, Together.
@@ -17,7 +18,7 @@
   .row
     .col-lg-8.col-lg-offset-2
   
-      paper-shadow.container-fluid.main-section
+      .container-fluid.main-section
         h2.text-center A Club Of Aspiring Android Developers
       
         .vertical-gap
@@ -49,7 +50,7 @@
   .row
     .col-lg-8.col-lg-offset-2
   
-      paper-shadow.container-fluid.main-section
+      .container-fluid.main-section
         h2.text-center Events <i>(Draft)</i>
       
         .vertical-gap
@@ -66,10 +67,10 @@
     .row
       .col-lg-8.col-lg-offset-2
     
-        paper-shadow.container-fluid.join-box z=5
+        .container-fluid.join-box z=5
           h2.text-center Join Us
             
-          a name="joinus_box"
+          a[name="joinus_box"]
         
           .vertical-gap
         
@@ -100,13 +101,12 @@
           .row
             .col-xs-8.col-xs-offset-2
               = link_to "http://goo.gl/forms/dKLpwTA6i8", {:target => "_blank"}
-                paper-button.center-block.signup-form-button[raised]
-                  | SIGN UP NOW
+                paper-button.center-block.signup-form-button[raised] SIGN UP NOW
 
           .vertical-gap
 
 footer.text-center.container
   
   p.small 
-    The Android robot is reproduced or modified from work created and shared by Google and used according to terms described in the Creative Commons 3.0 Attribution License.
+    | The Android robot is reproduced or modified from work created and shared by Google and used according to terms described in the Creative Commons 3.0 Attribution License.
 
