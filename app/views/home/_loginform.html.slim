@@ -1,4 +1,10 @@
-.container-fluid.login-container
-  .row
-    .col-xs-2.col-xs-offset-10
-      paper-button Login
+.container-fluid.login-container.text-right
+  span#gPlusSigninButton
+    span.g-signin[
+      data-callback="signinCallback"
+      data-clientid="#{ ENV['GOOGLE_CLIENT_ID'] }"
+      data-cookiepolicy="single_host_origin"
+      data-requestvisibleactions="http://schema.org/AddAction"
+      data-scope="https://www.googleapis.com/auth/plus.profile.emails.read"
+    ]
+

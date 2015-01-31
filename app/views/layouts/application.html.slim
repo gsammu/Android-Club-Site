@@ -7,6 +7,8 @@ html
     link[href='http://fonts.googleapis.com/css?family=Roboto:400,700,700italic,400italic' rel='stylesheet' type='text/css']
     = html_import_tag "application"
     = csrf_meta_tags
+    script[src="https://apis.google.com/js/client:platform.js" async defer]
+
   body
 
     == yield

@@ -47,6 +47,7 @@ gem 'carrierwave'
 gem 'fog', '~> 1.21.0'
 gem 'heroku-api'
 gem 'heroku' # Use for heroku scheduler
+gem 'google-api-client'
 
 # Bootstrap
 gem "therubyracer"
