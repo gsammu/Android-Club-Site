@@ -2,6 +2,12 @@
 html
   head
     title = @title || "MMU Androids Club | Learn to make apps together"
+    meta[property="og:title" content="#{ @title || 'MMU Android Student Club' }"]
+    meta[property="og:type" content="#{ @og_type || 'website' }"]
+    meta[property="og:url" content="#{ @og_url || request.original_url }"]
+    meta[property="og:image" content="#{ @og_image || asset_url('hardworking_coders-1600.jpg') }"]
+    meta[property="og:description" content="Learn android app development together. April - May 2015 in Cyberjaya campus. Join us now."]
+
     = stylesheet_link_tag    'application', media: 'all'
     = javascript_include_tag 'application'
     link[href='http://fonts.googleapis.com/css?family=Roboto:400,700,700italic,400italic' rel='stylesheet' type='text/css']
