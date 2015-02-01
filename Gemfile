@@ -32,6 +32,7 @@ gem 'paranoia', '~> 2.0'
 # The 0.9 version has weird bugs
 gem 'active_model_serializers', '~> 0.8.0'
 gem 'jbuilder'
+gem 'activeadmin', github: 'activeadmin'
 
 # Authentications
 gem 'devise'
