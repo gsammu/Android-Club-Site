@@ -39,11 +39,8 @@ GEM
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
     addressable (2.3.6)
+    andand (1.3.3)
     arel (6.0.0)
-    autoparse (0.3.3)
-      addressable (>= 2.3.1)
-      extlib (>= 0.9.15)
-      multi_json (>= 1.0.0)
     autoprefixer-rails (5.0.0.1)
       execjs
     bcrypt (3.1.9)
@@ -87,6 +84,13 @@ GEM
     daemon_controller (1.2.0)
     daemons (1.1.9)
     debug_inspector (0.0.2)
+    devise (3.4.1)
+      bcrypt (~> 3.0)
+      orm_adapter (~> 0.1)
+      railties (>= 3.2.6, < 5)
+      responders
+      thread_safe (~> 0.1)
+      warden (~> 1.2.3)
     diff-lcs (1.2.5)
     dotenv (1.0.2)
     emcee (1.0.10)
@@ -97,7 +101,6 @@ GEM
     eventmachine (1.0.4)
     excon (0.43.0)
     execjs (2.2.2)
-    extlib (0.9.16)
     factory_girl (4.5.0)
       activesupport (>= 3.0.0)
     factory_girl_rails (4.5.0)
@@ -133,16 +136,6 @@ GEM
       sass (>= 3.2.0, < 3.4)
     globalid (0.3.0)
       activesupport (>= 4.1.0)
-    google-api-client (0.8.2)
-      activesupport (>= 3.2)
-      addressable (~> 2.3)
-      autoparse (~> 0.3)
-      extlib (~> 0.9)
-      faraday (~> 0.9)
-      launchy (~> 2.4)
-      multi_json (~> 1.10)
-      retriable (~> 1.4)
-      signet (~> 0.6)
     haml (4.1.0.beta.1)
       tilt
     haml-rails (0.7.0)
@@ -151,6 +144,7 @@ GEM
       haml (>= 3.1, < 5.0)
       html2haml (>= 1.0.1)
       railties (>= 4.0.1)
+    hashie (3.3.2)
     heroku (3.10.1)
       heroku-api (~> 0.3.19)
       launchy (>= 0.3.2)
@@ -160,7 +154,6 @@ GEM
     heroku-api (0.3.22)
       excon (~> 0.38)
       multi_json (~> 1.8)
-    high_voltage (2.2.1)
     hike (1.2.3)
     hpricot (0.8.6)
     html2haml (1.0.1)
@@ -201,6 +194,7 @@ GEM
     mini_portile (0.6.2)
     minitest (5.5.1)
     multi_json (1.10.1)
+    multi_xml (0.5.5)
     multipart-post (2.0.0)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
@@ -211,6 +205,24 @@ GEM
       mini_portile (~> 0.6.0)
     nokogumbo (1.3.0)
       nokogiri
+    oauth2 (1.0.0)
+      faraday (>= 0.8, < 0.10)
+      jwt (~> 1.0)
+      multi_json (~> 1.3)
+      multi_xml (~> 0.5)
+      rack (~> 1.2)
+    omniauth (1.2.2)
+      hashie (>= 1.2, < 4)
+      rack (~> 1.0)
+    omniauth-google-oauth2 (0.2.6)
+      omniauth (> 1.0)
+      omniauth-oauth2 (~> 1.1)
+    omniauth-oauth2 (1.2.0)
+      faraday (>= 0.8, < 0.10)
+      multi_json (~> 1.3)
+      oauth2 (~> 1.0)
+      omniauth (~> 1.2)
+    orm_adapter (0.5.0)
     paranoia (2.0.4)
       activerecord (~> 4.0)
     passenger (4.0.57)
@@ -271,7 +283,6 @@ GEM
       railties (>= 4.2.0.alpha, < 5)
     rest-client (1.6.7)
       mime-types (>= 1.16)
-    retriable (1.4.1)
     rmagick (2.13.4)
     rspec-collection_matchers (1.1.2)
       rspec-expectations (>= 2.99.0.beta1)
@@ -308,12 +319,6 @@ GEM
     sexp_processor (4.4.5)
     sextant (0.2.4)
       rails (>= 3.2)
-    signet (0.6.0)
-      addressable (~> 2.3)
-      extlib (~> 0.9)
-      faraday (~> 0.9)
-      jwt (~> 1.0)
-      multi_json (~> 1.10)
     slim (3.0.1)
       temple (~> 0.7.3)
       tilt (>= 1.3.3, < 2.1)
@@ -365,6 +370,8 @@ GEM
       unf_ext
     unf_ext (0.0.6)
     uniform_notifier (1.6.2)
+    warden (1.2.3)
+      rack (>= 1.0)
     websocket (1.2.1)
     xpath (2.0.0)
       nokogiri (~> 1.3)
@@ -374,6 +381,7 @@ PLATFORMS
 
 DEPENDENCIES
   active_model_serializers (~> 0.8.0)
+  andand
   autoprefixer-rails
   bcrypt-ruby (~> 3.1.5)
   better_errors
@@ -384,23 +392,23 @@ DEPENDENCIES
   carrierwave
   coffee-rails (~> 4.0.0)
   daemons
+  devise
   dotenv (~> 1.0)
   emcee
   factory_girl_rails
   fog (~> 1.21.0)
   foreman
   foundation-rails
-  google-api-client
   haml
   haml-rails
   heroku
   heroku-api
-  high_voltage (~> 2.2.1)
   jbuilder
   jquery-rails (~> 2.2.1)
   less-rails
   markdown
   newrelic_rpm
+  omniauth-google-oauth2
   paranoia (~> 2.0)
   passenger
   pg (~> 0.17.1)

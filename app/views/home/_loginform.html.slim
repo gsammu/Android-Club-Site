@@ -1,10 +1,17 @@
-.container-fluid.login-container.text-right
-  span#gPlusSigninButton
-    span.g-signin[
-      data-callback="signinCallback"
-      data-clientid="#{ ENV['GOOGLE_CLIENT_ID'] }"
-      data-cookiepolicy="single_host_origin"
-      data-requestvisibleactions="http://schema.org/AddAction"
-      data-scope="https://www.googleapis.com/auth/plus.profile.emails.read"
-    ]
+.login-container
+  .login-inner.container
+    .col-xs-8
+      h4 MMU Android Student Club
+
+
+    .col-xs-4.text-right
+      .notLoggedIn[class="#{ user_signed_in? ? 'hidden' : '' }"]
+        div#gPlusSigninButton
+    
+      .loggedIn[class="#{ !user_signed_in? ? 'hidden' : '' }"]
+        .welcomeBar
+          span.h4#displayName = @current_user.andand.display_name
+          |  
+          a#gPlusSignoutButton[href="/logout"]
+            paper-button[raised] Logout
 

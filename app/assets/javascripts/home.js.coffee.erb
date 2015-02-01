@@ -1,0 +1,42 @@
+window.googleSigninCallback = (authResult)->
+
+  if authResult['status']['signed_in']
+    
+    # Try AJAX backend
+    $.ajax
+      type: 'POST'
+      url: '/users/auth/google_oauth2/callback'
+      beforeSend: (xhr)->
+        xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').last().attr('content'))
+      dataType: 'json'
+      data: authResult
+    .success (json)->
+      # Change the login bar
+      $('.notLoggedIn').addClass('hidden')
+      $('.loggedIn').removeClass('hidden')
+      $('#displayName').text(json.user.display_name)
+
+    .always (json)->
+      console.log(json)
+    
+  else
+    console.log authResult['error']
+
+jQuery ->
+  $('#gPlusSignoutButton').click (e)->
+    e.preventDefault()
+
+    # logout from rails
+    $.ajax
+      type: 'DELETE'
+      url: '/logout'
+    .success (data)->
+      console.log data
+      # logout from google and show button again
+      gapi.auth.signOut()
+
+      $('.notLoggedIn').removeClass('hidden')
+      $('.loggedIn').addClass('hidden')
+
+window.googleLoaded = ->
+  gapi.signin.render('gPlusSigninButton')

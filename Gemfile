@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 
 # Ruby supports
 gem 'unf', '~> 0.1.3'
+gem 'andand'
 
 # Rails
 gem 'rails', '~> 4.2'
@@ -23,7 +24,6 @@ gem 'bcrypt-ruby', '~> 3.1.5'
 gem 'haml'
 gem 'haml-rails'
 gem 'slim-rails'
-gem 'high_voltage', '~> 2.2.1' #To render static pages
 gem 'emcee'
 gem 'markdown'
 
@@ -33,8 +33,9 @@ gem 'paranoia', '~> 2.0'
 gem 'active_model_serializers', '~> 0.8.0'
 gem 'jbuilder'
 
-# Analytics & Debugging
-gem 'newrelic_rpm'
+# Authentications
+gem 'devise'
+gem 'omniauth-google-oauth2'
 
 # Databases
 gem 'pg', '~> 0.17.1'
@@ -47,7 +48,6 @@ gem 'carrierwave'
 gem 'fog', '~> 1.21.0'
 gem 'heroku-api'
 gem 'heroku' # Use for heroku scheduler
-gem 'google-api-client'
 
 # Bootstrap
 gem "therubyracer"
@@ -87,4 +87,8 @@ end
 
 group :production, :local do
   gem 'rails_12factor', '0.0.2'
+end
+
+group :production do
+  gem 'newrelic_rpm'
 end
