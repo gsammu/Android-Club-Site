@@ -4,10 +4,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :rememberable, :omniauthable, 
     :omniauth_providers => [:google_oauth2]
 
-  
-  has_many :progresses
-  has_many :tasks, through: :progresses
-  validates_presence_of :username, :email
+  validates_presence_of :email
 
   def self.find_for_google_oauth2(access_token, signed_in_resource=nil)
     p data = access_token.info

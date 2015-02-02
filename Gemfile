@@ -33,6 +33,8 @@ gem 'paranoia', '~> 2.0'
 gem 'active_model_serializers', '~> 0.8.0'
 gem 'jbuilder'
 gem 'activeadmin', github: 'activeadmin'
+gem 'acts_as_list'
+gem 'activeadmin-sortable'
 
 # Authentications
 gem 'devise'

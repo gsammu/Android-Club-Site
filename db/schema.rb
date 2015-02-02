@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150201153710) do
+ActiveRecord::Schema.define(version: 20150202050750) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,24 +49,33 @@ ActiveRecord::Schema.define(version: 20150201153710) do
   add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true, using: :btree
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
 
-  create_table "progresses", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "task_id"
-    t.string   "commit_url"
-    t.text     "message"
+  create_table "todo_items", force: :cascade do |t|
+    t.string   "title"
+    t.text     "description"
+    t.integer  "todo_list_id"
+    t.integer  "position"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "todo_items", ["todo_list_id"], name: "index_todo_items_on_todo_list_id", using: :btree
+
+  create_table "todo_lists", force: :cascade do |t|
+    t.string   "title"
+    t.datetime "deadline"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_index "progresses", ["task_id"], name: "index_progresses_on_task_id", using: :btree
-  add_index "progresses", ["user_id"], name: "index_progresses_on_user_id", using: :btree
-
-  create_table "tasks", force: :cascade do |t|
-    t.integer  "week"
-    t.string   "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+  create_table "user_todo_items", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "todo_item_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
+
+  add_index "user_todo_items", ["todo_item_id"], name: "index_user_todo_items_on_todo_item_id", using: :btree
+  add_index "user_todo_items", ["user_id"], name: "index_user_todo_items_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "username"
@@ -80,6 +89,7 @@ ActiveRecord::Schema.define(version: 20150201153710) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
 
-  add_foreign_key "progresses", "tasks"
-  add_foreign_key "progresses", "users"
+  add_foreign_key "todo_items", "todo_lists"
+  add_foreign_key "user_todo_items", "todo_items"
+  add_foreign_key "user_todo_items", "users"
 end
