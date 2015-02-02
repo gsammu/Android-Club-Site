@@ -39,5 +39,10 @@ Rails.application.configure do
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 
+  # Load .env file
   Dotenv.load Rails.root.join '.env'
+  
+  #  Discourse's Turbo Dev Middleware to speed up asset loading
+  require 'middleware/turbo_dev'
+  config.middleware.insert 0, Middleware::TurboDev
 end

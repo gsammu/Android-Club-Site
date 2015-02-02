@@ -1,6 +1,10 @@
 window.googleSigninCallback = (authResult)->
+  console.log authResult
+  console.log authResult['status']['signed_in']
 
   if authResult['status']['signed_in']
+
+    console.log "AJAX should be sent out..."
     
     # Try AJAX backend
     $.ajax
@@ -16,11 +20,16 @@ window.googleSigninCallback = (authResult)->
       $('.loggedIn').removeClass('hidden')
       $('#displayName').text(json.user.display_name)
 
+      # Toast
+      $('#welcome_back_toast')[0].show()
+
     .always (json)->
       console.log(json)
     
   else
     console.log authResult['error']
+
+  return # Yea no one returns if statement
 
 jQuery ->
   $('#gPlusSignoutButton').click (e)->
