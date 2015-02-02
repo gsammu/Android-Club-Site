@@ -10,11 +10,11 @@ class User < ActiveRecord::Base
   validates_presence_of :username, :email
 
   def self.find_for_google_oauth2(access_token, signed_in_resource=nil)
-    data = access_token.info
+    p data = access_token.info
     user = User.where(:email => data["email"]).first
     
     # Update display name if necessary
-    user.update_attribute(:display_name, data.first_name)
+    user.andand.update_attribute(:display_name, data.first_name)
     user
   end
 
