@@ -1,10 +1,8 @@
+# This will handle after google's signin and signout
 window.googleSigninCallback = (authResult)->
-  console.log authResult
-  console.log authResult['status']['signed_in']
+  console.log googleSigninCallback: authResult
 
-  if authResult['status']['signed_in']
-
-    console.log "AJAX should be sent out..."
+  if !user_logged_in and authResult['status']['signed_in']
     
     # Try AJAX backend
     $.ajax
@@ -14,38 +12,43 @@ window.googleSigninCallback = (authResult)->
         xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').last().attr('content'))
       dataType: 'json'
       data: authResult
-    .success (json)->
+
+    .done (json)->
       # Change the login bar
       $('.notLoggedIn').addClass('hidden')
       $('.loggedIn').removeClass('hidden')
       $('#displayName').text(json.user.display_name)
-
-      # Toast
-      $('#welcome_back_toast')[0].show()
+      window.user_logged_in = true
 
     .always (json)->
-      console.log(json)
+      console.log({ajaxresult: json})
+
+  else if user_logged_in && authResult['error'] == "user_signed_out"
+
+    $.ajax
+      type: 'DELETE'
+      url: '/logout'
+    .success ->
+      $('.notLoggedIn').removeClass('hidden')
+      $('.loggedIn').addClass('hidden')
+      window.user_logged_in = false
     
   else
-    console.log authResult['error']
+    console.log signin_error: authResult['error']
 
   return # Yea no one returns if statement
 
 jQuery ->
+  # Hook up sign out button
   $('#gPlusSignoutButton').click (e)->
     e.preventDefault()
-
-    # logout from rails
-    $.ajax
-      type: 'DELETE'
-      url: '/logout'
-    .success (data)->
-      console.log data
-      # logout from google and show button again
-      gapi.auth.signOut()
-
-      $('.notLoggedIn').removeClass('hidden')
-      $('.loggedIn').addClass('hidden')
+    gapi.auth.signOut()
 
 window.googleLoaded = ->
-  gapi.signin.render('gPlusSigninButton')
+  gapi.signin.render('gPlusSigninButton',
+    'clientid': '<%= ENV['GOOGLE_CLIENT_ID'] %>'
+    'cookiepolicy': 'single_host_origin'
+    'requestvisibleactions': 'http://schema.org/AddAction'
+    'scope': 'https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/userinfo.email'
+    'callback': 'googleSigninCallback'
+  )

@@ -13,7 +13,7 @@
           span.h4#displayName = @current_user.andand.display_name
           |  
           a#gPlusSignoutButton[href="/logout"]
-            paper-button[raised] Logout
+            paper-button.sign-out-button[raised] Logout
+
 
 =render "nonmember_modal"
-=render "welcomeback_toast"
