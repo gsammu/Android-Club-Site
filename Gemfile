@@ -8,6 +8,7 @@ gem 'andand'
 # Rails
 gem 'rails', '~> 4.2'
 gem 'responders', '~> 2.0'
+gem 'raygun4ruby'
 
 # Server
 gem 'foreman'
