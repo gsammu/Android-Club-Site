@@ -3,6 +3,8 @@ window.googleSigninCallback = (authResult)->
   console.log googleSigninCallback: authResult
 
   if !user_logged_in and authResult['status']['signed_in']
+
+    console.log "Before AJAX fires..."
     
     # Try AJAX backend
     $.ajax
@@ -20,18 +22,12 @@ window.googleSigninCallback = (authResult)->
       $('#displayName').text(json.user.display_name)
       window.user_logged_in = true
 
+      return false
+
     .always (json)->
-      console.log({ajaxresult: json})
+      console.log({ajax_result: json})
 
-  else if user_logged_in && authResult['error'] == "user_signed_out"
-
-    $.ajax
-      type: 'DELETE'
-      url: '/logout'
-    .success ->
-      $('.notLoggedIn').removeClass('hidden')
-      $('.loggedIn').addClass('hidden')
-      window.user_logged_in = false
+    console.log "After AJAX fires..."
     
   else
     console.log signin_error: authResult['error']
@@ -44,11 +40,20 @@ jQuery ->
     e.preventDefault()
     gapi.auth.signOut()
 
+    $.ajax
+      type: 'DELETE'
+      url: '/logout'
+    .success -> 
+      # change button for illusion of speed
+      $('.notLoggedIn').removeClass('hidden')
+      $('.loggedIn').addClass('hidden')
+      window.user_logged_in = false
+
 window.googleLoaded = ->
-  gapi.signin.render('gPlusSigninButton',
-    'clientid': '<%= ENV['GOOGLE_CLIENT_ID'] %>'
-    'cookiepolicy': 'single_host_origin'
-    'requestvisibleactions': 'http://schema.org/AddAction'
-    'scope': 'https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/userinfo.email'
-    'callback': 'googleSigninCallback'
-  )
+  # gapi.signin.render('gPlusSigninButton',
+  #   'clientid': '<%= ENV['GOOGLE_CLIENT_ID'] %>'
+  #   'cookiepolicy': 'single_host_origin'
+  #   'requestvisibleactions': 'http://schema.org/AddAction'
+  #   'scope': 'https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/userinfo.email'
+  #   'callback': 'googleSigninCallback'
+  # )

@@ -6,12 +6,22 @@
 
     .col-xs-4.text-right
       .notLoggedIn[class="#{ user_signed_in? ? 'hidden' : '' }"]
-        div#gPlusSigninButton
+        / div#gPlusSigninButton
+        span.g-signin[
+          data-callback="googleSigninCallback"
+          data-clientid="#{ ENV['GOOGLE_CLIENT_ID'] }"
+          data-cookiepolicy="single_host_origin"
+          data-requestvisibleactions="http://schema.org/AddAction"
+          data-scope="https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/userinfo.email"
+        ]
+
     
       .loggedIn[class="#{ !user_signed_in? ? 'hidden' : '' }"]
         .welcomeBar
           span.h4#displayName = @current_user.andand.display_name
           |  
+          a#dashboardButton[href="/dashboard"]
+            paper-button.dashboard-button[raised] Dashboard
           a#gPlusSignoutButton[href="/logout"]
             paper-button.sign-out-button[raised] Logout
 
