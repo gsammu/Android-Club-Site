@@ -43,6 +43,6 @@ Rails.application.configure do
   Dotenv.load Rails.root.join '.env'
   
   #  Discourse's Turbo Dev Middleware to speed up asset loading
-  require 'middleware/turbo_dev'
-  config.middleware.insert 0, Middleware::TurboDev
+  # require 'middleware/turbo_dev'
+  # config.middleware.insert 0, Middleware::TurboDev
 end
