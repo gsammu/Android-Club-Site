@@ -1,2 +1,5 @@
-.core-toolbar
-  h1 so cool
+== render 'toolbar'
+
+.container
+  - @todo_lists.each do |todo_list|
+    == render 'todo_list', todo_list: todo_list
