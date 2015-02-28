@@ -19,14 +19,12 @@ ActiveAdmin.register_page "Dashboard" do
           ul do
             TodoList.all.order(deadline: :asc).map do |todo_list|
               h3 li link_to("#{ todo_list.title } :: #{ todo_list.deadline }",
-                admin_todo_list_path(todo_list))
-
+                            admin_todo_list_path(todo_list))
               ul do
                 todo_list.todo_items.order(position: :asc).map do |todo_item|
                   li todo_item.title
                 end
               end
-              
             end
           end
         end
