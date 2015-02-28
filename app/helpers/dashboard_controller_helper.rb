@@ -4,7 +4,7 @@ module DashboardControllerHelper
       "Expired"
     else
       distance_of_time_in_words(Time.now, deadline).capitalize +
-      " left. "
+        " left. "
     end
   end
 end
