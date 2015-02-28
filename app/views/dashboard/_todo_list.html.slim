@@ -1,0 +1,9 @@
+.todo_list
+  h2
+    = todo_list.title + " "
+    small= humanize_countdown(todo_list.deadline)
+
+  .todo_checklist
+    table.table
+      - todo_list.todo_items.each do |todo_item|
+        == render 'todo_item', todo_item: todo_item

@@ -1,8 +1,38 @@
+body
+{
+  margin-top: 80px;
+}
+
 .core-toolbar
 {
-	position: fixed;
-	top: 0px;
-	width: 100%;
-	height: 60px;
-	background: #4285f4; // my favorite material indigo
+  position: fixed;
+  top: 0px;
+  width: 100%;
+  height: 60px;
+  background: #4285f4; // my favorite material indigo
+  color: white;
+  padding-top: 10px;
+
+  paper-button
+  {
+    color: white;
+  }
+
+  paper-button[raised]
+  {
+    background: white;
+    color: #4285f4;
+  }
+}
+
+.todo_list
+{
+  margin: 40px auto;
+  padding: 20px;
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.37);
+}
+
+.todo_checklist
+{
+  margin-top: 40px;
 }
