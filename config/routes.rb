@@ -13,4 +13,10 @@ Rails.application.routes.draw do
 
   # Todo list
   get '/dashboard' => 'dashboard#index'
+
+  # API
+  namespace :api, defaults: {format: :json} do
+    resources :todo_lists
+  end
+  
 end
