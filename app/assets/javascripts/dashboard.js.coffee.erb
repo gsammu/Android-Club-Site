@@ -3,15 +3,15 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $ ->
-  $("paper-checkbox").change ->
+  $(".completed_task_checkbox").change ->
     $.ajax 
       url: '/completed_tasks/'
       type: 'POST'
       data: { completed_task: {todo_item_id: this.id} , is_checked: this.checked }
       dataType: 'json'
       error: (jqXHR, textStatus, errorThrown) ->
-          $('body').append "AJAX Error: #{textStatus}"
+          console.log("AJAX Error")
       success: (data, textStatus, jqXHR) ->
-          $('body').append "Successful AJAX call: #{data}"
+          console.log("Successful AJAX call")
       complete:
-          console.log("DONE!")
+          console.log("AJAX DONE!")
