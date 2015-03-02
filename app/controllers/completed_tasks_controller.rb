@@ -5,12 +5,12 @@ class CompletedTasksController < ApplicationController
   end
 
   def create
-    if ( params[:is_checked].to_s == "true" ) 
+    if ( params[:is_checked].to_s == "true")
       current_user.completed_tasks.\
-       build(todo_item_id: params[:completed_task]["todo_item_id"])
+        build(todo_item_id: params[:completed_task]["todo_item_id"])
     else
       current_user.completed_tasks.\
-       where(todo_item_id: params[:completed_task]["todo_item_id"]).destroy_all
+        where(todo_item_id: params[:completed_task]["todo_item_id"]).destroy_all
     end
     if current_user.save
       respond_to do |format|
