@@ -1,0 +1,8 @@
+h1 Hello
+= form_for(@ct) do |f|
+  div.field
+    = f.label :todo_item_id
+    br
+    = f.text_field :todo_item_id
+  div.actions
+    = f.submit

@@ -1,5 +1,12 @@
+
 tr
   td
-    paper-checkbox
+  	- if !current_user.completed_tasks.find_by(todo_item_id: todo_item.id).nil?
+    	paper-checkbox[id="#{ todo_item.id }" checked]
+    - else
+        paper-checkbox[id="#{ todo_item.id }"]
   td
     = todo_item.title
+
+
+    

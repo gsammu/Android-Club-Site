@@ -1,3 +1,17 @@
 # Place all the behaviors and hooks related to the matching controller here.
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
+
+$ ->
+  $("paper-checkbox").change ->
+    $.ajax 
+      url: '/completed_tasks/'
+      type: 'POST'
+      data: { completed_task: {todo_item_id: this.id} , is_checked: this.checked }
+      dataType: 'json'
+      error: (jqXHR, textStatus, errorThrown) ->
+          $('body').append "AJAX Error: #{textStatus}"
+      success: (data, textStatus, jqXHR) ->
+          $('body').append "Successful AJAX call: #{data}"
+      complete:
+          console.log("DONE!")
