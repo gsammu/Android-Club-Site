@@ -21,12 +21,12 @@ class CompletedTasksController < ApplicationController
         end
       end
     else
-      respond_to do |format| 
+      respond_to do |format|
         format.html do
-          redirect_to dashboard_url, notice: "Save failed" 
-        end 
+          redirect_to dashboard_url, notice: "Save failed"
+        end
         format.json do
-          render :json => { :success => false } 
+          render json: { success: false } 
         end
       end
     end
