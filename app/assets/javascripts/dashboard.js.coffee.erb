@@ -3,15 +3,23 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $ ->
+  
   $(".completed_task_checkbox").change ->
+    $("paper-dialog").text("Saving")
+    $("paper-dialog").show()
     $.ajax 
       url: '/completed_tasks/'
       type: 'POST'
       data: { completed_task: {todo_item_id: this.id} , is_checked: this.checked }
       dataType: 'json'
       error: (jqXHR, textStatus, errorThrown) ->
+          $("paper-dialog").text("An error has occured")
           console.log("AJAX Error")
       success: (data, textStatus, jqXHR) ->
+          $("paper-dialog").text("Saved")
           console.log("Successful AJAX call")
-      complete:
+      complete: ->
           console.log("AJAX DONE!")
+          setTimeout -> 
+            $("paper-dialog").hide()
+          , 2500
