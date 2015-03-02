@@ -1,15 +1,16 @@
 class CompletedTasksController < ApplicationController
-
   before_action :authenticate_user!
 
   def new
   end
 
   def create
-    if(params[:is_checked].to_s == "true")
-      current_user.completed_tasks.build(todo_item_id: params[:completed_task]["todo_item_id"])
+    if ( params[:is_checked].to_s == "true" ) 
+      current_user.completed_tasks.\
+       build(todo_item_id: params[:completed_task]["todo_item_id"])
     else
-      current_user.completed_tasks.where(todo_item_id: params[:completed_task]["todo_item_id"]).destroy_all
+      current_user.completed_tasks.\
+       where(todo_item_id: params[:completed_task]["todo_item_id"]).destroy_all
     end
     if current_user.save
       respond_to do |format|
