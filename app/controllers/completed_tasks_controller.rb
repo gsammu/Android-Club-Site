@@ -26,6 +26,7 @@ class CompletedTasksController < ApplicationController
       end
     end
   end
+  
   def destroy
     current_user.completed_tasks.where(completed_task_params).destroy_all
     if current_user.save
