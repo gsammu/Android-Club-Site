@@ -6,11 +6,9 @@ class CompletedTasksController < ApplicationController
 
   def create
     if (params[:is_checked].to_s == "true")
-      current_user.completed_tasks.
-        build(todo_item_id: params[:completed_task]["todo_item_id"])
+      current_user.completed_tasks.build(completed_task_params)
     else
-      current_user.completed_tasks.
-        where(todo_item_id: params[:completed_task]["todo_item_id"]).destroy_all
+      current_user.completed_tasks.where(completed_task_params).destroy_all
     end
     if current_user.save
       respond_to do |format|
@@ -33,7 +31,7 @@ class CompletedTasksController < ApplicationController
     end
   end
 
-  def person_params
+  def completed_task_params
     params.require(:completed_task).permit(:id, :todo_item_id, :is_checked)
   end
 end
