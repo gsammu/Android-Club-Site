@@ -21,12 +21,12 @@ class CompletedTasksController < ApplicationController
           redirect_to dashboard_url, notice: "Save failed"
         end
         format.json do
-          render json: { success: false } 
+          render json: { success: false }
         end
       end
     end
   end
-  
+
   def destroy
     current_user.completed_tasks.where(completed_task_params).destroy_all
     if current_user.save
@@ -49,6 +49,7 @@ class CompletedTasksController < ApplicationController
       end
     end
   end
+
   def completed_task_params
     params.require(:completed_task).permit(:id, :todo_item_id, :is_checked)
   end
