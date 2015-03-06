@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
 
   root 'home#home'
-  resources :completed_tasks, only: [:create]
+  resources :completed_tasks, only: [:create, :destroy]
   # Session control
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   devise_scope :user do

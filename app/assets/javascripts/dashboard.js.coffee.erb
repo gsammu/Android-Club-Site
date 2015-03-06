@@ -3,14 +3,13 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $ ->
-  
   $(".completed_task_checkbox").change ->
     $("paper-dialog").text("Saving")
     $("paper-dialog").show()
-    $.ajax 
-      url: '/completed_tasks/'
-      type: 'POST'
-      data: { completed_task: {todo_item_id: this.id} , is_checked: this.checked }
+    $.ajax
+      url: "/completed_tasks/" + if this.checked then "" else this.id
+      type: if this.checked then "POST" else "DELETE"
+      data: { completed_task: {todo_item_id: this.id}}
       dataType: 'json'
       error: (jqXHR, textStatus, errorThrown) ->
           $("paper-dialog").text("An error has occured")
