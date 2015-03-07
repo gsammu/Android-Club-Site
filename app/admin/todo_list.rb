@@ -4,7 +4,8 @@ ActiveAdmin.register TodoList do
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   #
-  permit_params :title, :deadline, todo_items_attributes: [:id, :title, :description, :_destroy => true]
+  permit_params :title, :deadline,
+                todo_items_attributes: [:id, :title, :description, _destroy: true]
   #
   # or
   #
