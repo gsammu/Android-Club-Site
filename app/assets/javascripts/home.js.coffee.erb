@@ -14,7 +14,10 @@ window.googleSigninCallback = (authResult)->
         xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').last().attr('content'))
       dataType: 'json'
       data: authResult
-
+    .success ->
+      $(".nonmember").addClass('hidden')
+    .error ->
+      $(".nonmember").removeClass('hidden')
     .done (json)->
       # Change the login bar
       $('.notLoggedIn').addClass('hidden')
