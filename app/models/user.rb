@@ -6,7 +6,8 @@ class User < ActiveRecord::Base
 
   has_many :completed_tasks
   has_many :todo_items, through: :completed_tasks
-  has_and_belongs_to_many :todo_lists
+  has_many :todo_lists_users
+  has_many :todo_lists, through: :todo_lists_users
   accepts_nested_attributes_for :todo_lists
   validates_presence_of :email
 
