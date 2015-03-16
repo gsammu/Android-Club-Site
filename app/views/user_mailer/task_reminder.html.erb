@@ -1,0 +1,10 @@
+<h1>UserMailer#account_activation</h1>
+
+<p>
+  <%= @greeting %>, this is an automated message to remind you that you have not completed one or more tasks that are due tomorrow.
+
+  <% @todo_list.each do |todo_list| %>
+    <p> <%= todo_list.title %></p>
+  <% end %>
+
+</p>

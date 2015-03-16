@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
 
   has_many :completed_tasks
   has_many :todo_items, through: :completed_tasks
+  has_and_belongs_to_many :todo_lists
 
   validates_presence_of :email
 
@@ -21,5 +22,12 @@ class User < ActiveRecord::Base
   def remember_me
     true
   end
-
+  def User.reminder_task
+    User.all.each do |user|
+      if TodoList.joins(:users).where('users.id' => User.first.id).
+        where("todo_lists.deadline < ?", Time.now + 1.day).exists?
+        UserMailer.task_reminder(user).deliver_now
+      end
+    end
+  end
 end

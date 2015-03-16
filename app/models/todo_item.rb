@@ -4,4 +4,7 @@ class TodoItem < ActiveRecord::Base
   has_many :users, through: :completed_tasks
 
   acts_as_list scope: :todo_list
+  def completed?(user)
+  	CompletedTask.where(user_id: user.id).find_by_todo_item_id(self.id).present?
+  end
 end
