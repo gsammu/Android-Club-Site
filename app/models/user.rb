@@ -24,7 +24,7 @@ class User < ActiveRecord::Base
   end
   def self.reminder_task
     User.all.each do |user|
-      if TodoList.joins(:users).where('users.id' => user.id).
+      if TodoList.joins(:users).where("users.id" => user.id).
                   where("todo_lists.deadline < ?", Time.now + 1.day).exists?
         UserMailer.task_reminder(user).deliver_now
       end
