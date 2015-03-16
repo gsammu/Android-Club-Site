@@ -7,7 +7,7 @@ class TodoList < ActiveRecord::Base
   has_many :users, through: :todo_lists_users
   scope :user, ->(user) { where("user_id = ?", user) }
   def completed?(user)
-    self.todo_items.each do |todo_item|
+    todo_items.each do |todo_item|
       unless todo_item.completed?(user)
         return false
       end
