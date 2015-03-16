@@ -22,10 +22,10 @@ class User < ActiveRecord::Base
   def remember_me
     true
   end
-  def User.reminder_task
+  def self.reminder_task
     User.all.each do |user|
       if TodoList.joins(:users).where('users.id' => user.id).
-        where("todo_lists.deadline < ?", Time.now + 1.day).exists?
+                  where("todo_lists.deadline < ?", Time.now + 1.day).exists?
         UserMailer.task_reminder(user).deliver_now
       end
     end

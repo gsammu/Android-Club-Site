@@ -42,7 +42,7 @@ ActiveAdmin.register TodoList do
     end
     f.inputs do
       f.has_many :todo_items, sortable: :position, sortable_start: 1,
-       allow_destroy: true, new_record: true do |item|
+                  allow_destroy: true, new_record: true do |item|
         item.input :title
         item.input :description
       end
