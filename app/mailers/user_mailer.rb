@@ -8,7 +8,7 @@ class UserMailer < ApplicationMailer
     @greeting = "Hi"
     @user = user
     @todo_list = user.todo_lists.where("deadline < ?", Time.now + 1.day).
-    where("deadline > ?", Time.now)
-    mail to: user.email, subject: "Task Reminder " 
+                      where("deadline > ?", Time.now)
+    mail to: user.email, subject: "Task Reminder "
   end
 end

@@ -38,10 +38,11 @@ ActiveAdmin.register TodoList do
       f.input :deadline, as: :datepicker, datepicker_options: { min_date: Time.now.to_date }
     end
     f.inputs "Assignees" do
-      f.input :users, :as => :check_boxes, :input_html => { :checked => 'checked' }
+      f.input :users, as: :check_boxes, input_html: { checked: "checked" }
     end
     f.inputs do
-      f.has_many :todo_items, sortable: :position, sortable_start: 1, allow_destroy: true, new_record: true do |item|
+      f.has_many :todo_items, sortable: :position, sortable_start: 1,
+       allow_destroy: true, new_record: true do |item|
         item.input :title
         item.input :description
       end

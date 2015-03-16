@@ -4,11 +4,11 @@ class TodoList < ActiveRecord::Base
   accepts_nested_attributes_for :todo_items, allow_destroy: true
   accepts_nested_attributes_for :users 
   def completed?(user)
-  	self.todo_items.each do |todo_item|
-  	  unless todo_item.completed?(user)
-  	  	return false
-  	  end
-  	end
-  	  return true
+    self.todo_items.each do |todo_item|
+      unless todo_item.completed?(user)
+        return false
+      end
+    end
+    return true
   end
 end

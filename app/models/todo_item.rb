@@ -5,6 +5,6 @@ class TodoItem < ActiveRecord::Base
 
   acts_as_list scope: :todo_list
   def completed?(user)
-  	CompletedTask.where(user_id: user.id).find_by_todo_item_id(self.id).present?
+    CompletedTask.where(user_id: user.id).find_by_todo_item_id(id).present?
   end
 end
