@@ -4,7 +4,7 @@ ActiveAdmin.register TodoList do
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   #
-  permit_params :title, :deadline,
+  permit_params :title, :deadline, {:user_ids => []},
                 todo_items_attributes: [:id, :title, :description,
                   :_destroy, :position]
   #
@@ -38,7 +38,7 @@ ActiveAdmin.register TodoList do
       f.input :deadline, as: :datepicker, datepicker_options: { min_date: Time.now.to_date }
     end
     f.inputs 'Assignees' do
-      f.input :users, :as => :check_boxes, :input_html => { :checked => 'checked' }
+      f.input :users, :as => :check_boxes
     end
     #f.has_many :users, heading: 'Assignees', allow_destroy: false, new_record: false do |a|
     #    a.input :username, :as => :select, :collection => User.all, :multiple => true,
