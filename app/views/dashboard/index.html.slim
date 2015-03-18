@@ -1,7 +1,9 @@
 == render 'toolbar'
-<paper-dialog class="box-shadow-fix center save-dialog">
-  <p></p>
-</paper-dialog>
+paper-dialog.box-shadow-fix.center.save-dialog
+  p
+  
 .container
-  - @todo_lists.each do |todo_list|
-    == render 'todo_list', todo_list: todo_list
+  .row
+    .col-xs-6.col-xs-offset-3
+      - @todo_lists.each do |todo_list|
+        == render 'todo_list', todo_list: todo_list

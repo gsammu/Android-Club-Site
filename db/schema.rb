@@ -100,8 +100,7 @@ ActiveRecord::Schema.define(version: 20150316063948) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
 
   add_foreign_key "completed_tasks", "todo_items"
-  add_foreign_key "completed_tasks", "users"
+  add_foreign_key "todo_items", "todo_lists"
   add_foreign_key "todo_items", "todo_lists"
   add_foreign_key "todo_lists_users", "todo_lists"
-  add_foreign_key "todo_lists_users", "users"
 end
