@@ -1,6 +1,6 @@
 ActiveAdmin.register User do
 
-  permit_params :username, :email, :password, :password_confirmation
+  permit_params :username, :email, :password, :password_confirmation, :user_ids
 
   form do |f|
     f.semantic_errors *f.object.errors.keys

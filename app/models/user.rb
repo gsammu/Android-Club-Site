@@ -6,7 +6,9 @@ class User < ActiveRecord::Base
 
   has_many :completed_tasks
   has_many :todo_items, through: :completed_tasks
-
+  has_many :todo_lists_users
+  has_many :todo_lists, through: :todo_lists_users
+  accepts_nested_attributes_for :todo_lists
   validates_presence_of :email
 
   def self.find_for_google_oauth2(access_token, signed_in_resource=nil)
@@ -21,5 +23,12 @@ class User < ActiveRecord::Base
   def remember_me
     true
   end
-
+  def self.reminder_task
+    User.all.each do |user|
+      if TodoList.joins(:users).where("users.id" => user.id).
+                  where("todo_lists.deadline < ?", Time.now + 1.day).exists?
+        UserMailer.task_reminder(user).deliver_now
+      end
+    end
+  end
 end

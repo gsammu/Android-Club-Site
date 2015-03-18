@@ -1,0 +1,6 @@
+Task Reminder
+<%= @greeting %>, this is an automated message to remind you that you have not completed one or more tasks that are due tomorrow.
+Tasks to be submitted
+<% @todo_list.each do |todo_list| %>
+  <%= todo_list.title %>
+<% end %>
