@@ -1,6 +1,12 @@
 // Place all the styles related to the comingsoon controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+//= require bootstrap_and_overrides
+
+body
+{
+	font-family: 'Roboto', sans-serif;
+}
 
 .login-container
 {
@@ -47,13 +53,20 @@
 		// background: url(<%= asset_path('rg-kuching.jpg') %>) center center no-repeat;
 		background-color: #2196F3;
 		background-size: cover;
-		height: 650px;
+		// height: 650px;
+		padding: 60px;
 
 		.join-box
 		{
 			color: black;
 			background:white;
 			box-shadow: 0 11px 7px 0 rgba(0, 0, 0, 0.19);
+			padding: 20px;
+
+			ul, ol > li
+			{
+				font-size: 18px;
+			}
 		}
 	}
 
@@ -81,6 +94,11 @@ paper-button
 		font-size: 20px;
 		color: white;
 		background: #2196F3;
+
+		&[disabled]
+		{
+			background: #DDDDDD;
+		}
 	}
 
 	&.dashboard-button
