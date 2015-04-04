@@ -1,25 +1,27 @@
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
-  respond_to :json
+  respond_to :html, :json
 
   def google_oauth2
     @user = User.find_for_google_oauth2(request.env["omniauth.auth"], current_user)
 
-
     # We will pre-register the approved members to our system
     if @user.andand.persisted?
+      p "User persisted"
       sign_in :user, @user, :event => :authentication
       @user.remember_me!
 
-      p @message = {
-        user_signed_in: user_signed_in?,
-        current_user: current_user || nil,
-        user_session: user_session || nil
-      }
-      render json: @user, status: :ok
+      respond_to do |format|
+        format.html { redirect_to dashboard_path }
+        format.json { render json: @user, status: :ok }
+      end
     else
+      p "User NOT persisted"
     # These guys logged in are not approved to be club member, sorry.
-      render json: {error: 'not_member'}, status: :forbidden
+      respond_to do |format|
+        format.html { redirect_to root_path }
+        format.json { render json: {error: 'not_member'}, status: :forbidden }
+      end
     end
 
   end

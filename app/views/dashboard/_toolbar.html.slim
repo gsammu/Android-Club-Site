@@ -5,4 +5,5 @@
     .pull-right
       a[href="https://androidmmu.slack.com/" target="_blank"]
         paper-button[raised] Slack
-      paper-button Logout
+      =link_to(destroy_user_session_path, method: :delete)
+        paper-button Logout

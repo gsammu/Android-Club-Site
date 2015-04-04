@@ -6,16 +6,7 @@
 
     .col-xs-4.text-right
       .notLoggedIn[class="#{ user_signed_in? ? 'hidden' : '' }"]
-        / div#gPlusSigninButton
-        span.g-signin[
-          data-callback="googleSigninCallback"
-          data-clientid="#{ ENV['GOOGLE_CLIENT_ID'] }"
-          data-cookiepolicy="single_host_origin"
-          data-requestvisibleactions="http://schema.org/AddAction"
-          data-scope="https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/userinfo.email"
-          data-immediate="false"
-        ]
-
+        = link_to("Login With Google", user_omniauth_authorize_path(:google_oauth2))
     
       .loggedIn[class="#{ !user_signed_in? ? 'hidden' : '' }"]
         .welcomeBar
@@ -23,7 +14,9 @@
           |  
           a#dashboardButton[href="/dashboard"]
             paper-button.dashboard-button[raised] Dashboard
-          a#gPlusSignoutButton[href="/logout"]
+          =link_to(destroy_user_session_path,
+                   id:"gPlusSignoutButton", method: :delete)
             paper-button.sign-out-button[raised] Logout
+
 .nonmember[class="hidden"]
   = render "nonmember_modal"

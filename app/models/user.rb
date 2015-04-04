@@ -13,6 +13,7 @@ class User < ActiveRecord::Base
 
   def self.find_for_google_oauth2(access_token, signed_in_resource=nil)
     p data = access_token.info
+    p id_info = access_token.id_info
     user = User.where(:email => data["email"]).first
     
     # Update display name if necessary

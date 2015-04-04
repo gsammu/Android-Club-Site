@@ -5,8 +5,8 @@ window.googleSigninCallback = (authResult)->
   if !user_logged_in and authResult['status']['signed_in']
 
     console.log "Before AJAX fires..."
+    console.log authResult: authResult
     
-    # Try AJAX backend
     $.ajax
       type: 'POST'
       url: '/users/auth/google_oauth2/callback'
