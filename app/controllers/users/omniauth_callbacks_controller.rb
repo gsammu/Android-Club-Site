@@ -19,7 +19,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       p "User NOT persisted"
     # These guys logged in are not approved to be club member, sorry.
       respond_to do |format|
-        format.html { redirect_to root_path }
+        format.html { redirect_to root_path, alert: "not_member" }
         format.json { render json: {error: 'not_member'}, status: :forbidden }
       end
     end

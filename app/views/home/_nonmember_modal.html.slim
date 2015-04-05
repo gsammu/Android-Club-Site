@@ -1,3 +1,17 @@
-paper-action-dialog#nonmember_modal[backdrop autoCloseDisabled layered="false"]
-  p Sorry but you are not a member of MMU Android Student Club.
-  p If you believe this is a mistake, contact me.
+.modal.fade#non_member_modal[role="dialog"]
+  .modal-dialog
+    .modal-content
+      .modal-header
+        h4.modal-title Forbidden
+      .modal-body
+        .container-fluid
+          p You must be a member of MMU Cyberjaya Android Student Group to login.
+      .modal-footer
+        button.btn.btn-primary[type="button" data-dismiss="modal"] Close
+
+- if flash[:alert] && flash[:alert] == "not_member"
+  javascript:
+    $(document).ready(function(){
+      $("#non_member_modal").modal("show");
+    });
+  
