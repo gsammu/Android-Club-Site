@@ -7,3 +7,6 @@ paper-dialog.box-shadow-fix.center.save-dialog
     .col-xs-6.col-xs-offset-3
       - @todo_lists.each do |todo_list|
         == render 'todo_list', todo_list: todo_list
+
+- if @intercom_enabled
+  == render 'intercom'
