@@ -5,7 +5,8 @@ class DashboardController < ApplicationController
     @todo_lists = TodoList.includes(:todo_items).
                            where("deadline > ?", Time.now - 2.days).
                            order(deadline: :asc)
-
     @completed_task = CompletedTask.new
+    @intercom_enabled = Rails.production? && ENV["INTERCOM_APP_ID"]
+    @user = current_user
   end
 end
